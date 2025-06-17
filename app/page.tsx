@@ -1,11 +1,11 @@
-import { Header } from "@/components/header"
-import { HeroSlider } from "@/components/hero-slider"
-import { SearchBar } from "@/components/search-bar"
-import { AddressSelector } from "@/components/address-selector"
-import { PizzaCarousel } from "@/components/pizza-carousel"
-import { Footer } from "@/components/footer"
-import { PopularPizzas } from "@/components/popular-pizzas"
-import { BeveragesSection } from "@/components/beverages-section"
+import { Header } from "@/components/header";
+import { HeroSlider } from "@/components/hero-slider";
+import { SearchBar } from "@/components/search-bar";
+import { PizzaCarousel } from "@/components/pizza-carousel";
+import { Footer } from "@/components/footer";
+import { PopularPizzas } from "@/components/popular-pizzas";
+import { BeveragesSection } from "@/components/beverages-section";
+import AddressSelector from "@/components/address-selector";
 
 export default function HomePage() {
   return (
@@ -25,5 +25,5 @@ export default function HomePage() {
       </main>
       <Footer />
     </div>
-  )
+  );
 }
