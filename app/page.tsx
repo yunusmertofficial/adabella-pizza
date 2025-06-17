@@ -5,7 +5,7 @@ import { PizzaCarousel } from "@/components/pizza-carousel";
 import { Footer } from "@/components/footer";
 import { PopularPizzas } from "@/components/popular-pizzas";
 import { BeveragesSection } from "@/components/beverages-section";
-import AddressSelector from "@/components/address-selector";
+import DeliveryMethodSelector from "@/components/delivery-method-selector/delivery-method-selector";
 
 export default function HomePage() {
   return (
@@ -14,7 +14,7 @@ export default function HomePage() {
       <main>
         <div className="bg-white shadow-sm">
           <div className="container mx-auto px-4 py-4">
-            <AddressSelector />
+            <DeliveryMethodSelector />
             <SearchBar />
           </div>
         </div>
