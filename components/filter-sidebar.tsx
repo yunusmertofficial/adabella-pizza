@@ -59,7 +59,7 @@ export function FilterSidebar({ isOpen, onClose, onFilterChange }: FilterSidebar
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 md:relative md:bg-transparent">
+    <div className="fixed inset-0 bg-black bg-opacity-50 z-[10000] md:relative md:bg-transparent">
       <div className="fixed right-0 top-0 h-full w-full bg-white shadow-lg md:relative md:w-80 md:shadow-none">
         <div className="p-6">
           <div className="flex items-center justify-between mb-6 md:hidden">

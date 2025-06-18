@@ -59,7 +59,7 @@ export function ExtrasFilterSidebar({ isOpen, onClose, onFilterChange }: ExtrasF
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-[9997] md:relative md:bg-transparent" onClick={onClose}>
+    <div className="fixed inset-0 bg-black bg-opacity-50 z-[10000] md:relative md:bg-transparent" onClick={onClose}>
       <div
         className="fixed right-0 top-0 h-full w-full bg-white shadow-lg md:relative md:w-80 md:shadow-none md:z-0 overflow-y-auto"
         onClick={(e) => e.stopPropagation()}

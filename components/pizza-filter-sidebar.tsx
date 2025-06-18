@@ -86,7 +86,7 @@ export function PizzaFilterSidebar({
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 z-[9997] md:relative md:bg-transparent"
+      className="fixed inset-0 bg-black bg-opacity-50 z-[10000] md:relative md:bg-transparent"
       onClick={onClose}
     >
       <div
