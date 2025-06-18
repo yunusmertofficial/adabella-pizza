@@ -60,16 +60,15 @@ export function FilterSidebar({ isOpen, onClose, onFilterChange }: FilterSidebar
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-[10000] md:relative md:bg-transparent">
-      <div className="fixed right-0 top-0 h-full w-full bg-white shadow-lg md:relative md:w-80 md:shadow-none">
-        <div className="p-6">
-          <div className="flex items-center justify-between mb-6 md:hidden">
-            <h2 className="text-xl font-bold">Filtreler</h2>
-            <Button variant="ghost" size="icon" onClick={onClose}>
-              <X className="h-5 w-5" />
-            </Button>
-          </div>
+      <div className="fixed right-0 top-0 h-full w-full bg-white shadow-lg md:relative md:w-80 md:shadow-none flex flex-col">
+        <div className="flex items-center justify-between p-6 md:hidden border-b sticky top-0 bg-white z-10">
+          <h2 className="text-xl font-bold">Filtreler</h2>
+          <Button variant="ghost" size="icon" onClick={onClose}>
+            <X className="h-5 w-5" />
+          </Button>
+        </div>
 
-          <div className="space-y-6">
+        <div className="flex-1 overflow-y-auto p-6 space-y-6">
             {/* Fiyat Aralığı */}
             <Card>
               <CardHeader>
@@ -139,17 +138,20 @@ export function FilterSidebar({ isOpen, onClose, onFilterChange }: FilterSidebar
               </CardContent>
             </Card>
 
-            {/* Butonlar */}
-            <div className="space-y-3">
-              <Button onClick={applyFilters} className="w-full bg-red-600 hover:bg-red-700">
-                Filtreleri Uygula
-              </Button>
-              <Button onClick={clearFilters} variant="outline" className="w-full">
-                Filtreleri Temizle
-              </Button>
-            </div>
+            {/* Butonlar (footer is placed outside) */}
           </div>
+
         </div>
+
+        <div className="p-6 border-t space-y-3 sticky bottom-0 bg-white">
+          <Button onClick={applyFilters} className="w-full bg-red-600 hover:bg-red-700">
+            Filtreleri Uygula
+          </Button>
+          <Button onClick={clearFilters} variant="outline" className="w-full">
+            Filtreleri Temizle
+          </Button>
+        </div>
+
       </div>
     </div>
   )
