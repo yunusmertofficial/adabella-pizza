@@ -149,6 +149,28 @@ export function MapComponent({
     }
   }, [center, map, marker]);
 
+  // Cleanup map and markers on unmount or when dependencies change
+  useEffect(() => {
+    return () => {
+      branchMarkers.forEach((bm) => {
+        if (bm) {
+          bm.off && bm.off();
+          bm.remove && bm.remove();
+        }
+      });
+
+      if (marker) {
+        marker.off && marker.off();
+        marker.remove && marker.remove();
+      }
+
+      if (map) {
+        map.off && map.off();
+        map.remove();
+      }
+    };
+  }, [map, marker, branchMarkers]);
+
   const handleZoomIn = () => {
     if (map) {
       map.setZoom(map.getZoom() + 1);
