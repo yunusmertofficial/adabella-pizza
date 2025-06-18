@@ -90,7 +90,7 @@ export function PizzaFilterSidebar({
       onClick={onClose}
     >
       <div
-        className="fixed right-0 top-0 h-full w-80 bg-white shadow-lg md:relative md:w-full md:shadow-none md:z-0 overflow-y-auto"
+        className="fixed right-0 top-0 h-full w-full bg-white shadow-lg md:relative md:w-80 md:shadow-none md:z-0 overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="p-6 min-h-full">
