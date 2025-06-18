@@ -86,14 +86,15 @@ export function PizzaFilterSidebar({
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 z-[10000] md:relative md:bg-transparent"
+      className="fixed inset-0 bg-black bg-opacity-50 z-[10000] md:z-0 md:relative md:bg-transparent"
       onClick={onClose}
     >
       <div
         className="fixed right-0 top-0 h-full w-full bg-white shadow-lg md:relative md:w-80 md:shadow-none md:z-0 flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between p-6 md:hidden border-b sticky top-0 bg-white z-10">
+        {/* Header */}
+        <div className="flex items-center justify-between p-6 md:hidden border-b bg-white z-20">
           <h2 className="text-xl font-bold">Filtreler</h2>
           <Button
             variant="ghost"
@@ -105,7 +106,8 @@ export function PizzaFilterSidebar({
           </Button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        {/* Scrollable Content */}
+        <div className="flex-1 overflow-y-auto p-6 space-y-6 pb-20">
           {/* Fiyat Aralığı */}
           <Card>
             <CardHeader>
@@ -203,21 +205,20 @@ export function PizzaFilterSidebar({
               </div>
             </CardContent>
           </Card>
-
-          {/* Butonlar (footer is placed outside) */}
         </div>
-      </div>
 
-      <div className="p-6 border-t space-y-3 sticky bottom-0 bg-white">
-        <Button
-          onClick={applyFilters}
-          className="w-full bg-red-600 hover:bg-red-700"
-        >
-          Filtreleri Uygula
-        </Button>
-        <Button onClick={clearFilters} variant="outline" className="w-full">
-          Filtreleri Temizle
-        </Button>
+        {/* Footer (Buttons) */}
+        <div className="p-6 border-t bg-white">
+          <Button
+            onClick={applyFilters}
+            className="w-full bg-red-600 hover:bg-red-700"
+          >
+            Filtreleri Uygula
+          </Button>
+          <Button onClick={clearFilters} variant="outline" className="w-full">
+            Filtreleri Temizle
+          </Button>
+        </div>
       </div>
     </div>
   );
