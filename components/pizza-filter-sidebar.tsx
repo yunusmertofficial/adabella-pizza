@@ -106,125 +106,118 @@ export function PizzaFilterSidebar({
         </div>
 
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
-            {/* Fiyat Aralığı */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Fiyat Aralığı</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <Slider
-                    value={priceRange}
-                    onValueChange={setPriceRange}
-                    max={500}
-                    min={0}
-                    step={5}
-                    className="w-full"
-                  />
-                  <div className="flex justify-between text-sm text-gray-600">
-                    <span>{priceRange[0]} TL</span>
-                    <span>{priceRange[1]} TL</span>
+          {/* Fiyat Aralığı */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Fiyat Aralığı</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <Slider
+                  value={priceRange}
+                  onValueChange={setPriceRange}
+                  max={500}
+                  min={0}
+                  step={5}
+                  className="w-full"
+                />
+                <div className="flex justify-between text-sm text-gray-600">
+                  <span>{priceRange[0]} TL</span>
+                  <span>{priceRange[1]} TL</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Pizza Türleri */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Pizza Türü</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                {categories.map((category) => (
+                  <div key={category} className="flex items-center space-x-2">
+                    <Checkbox
+                      id={category}
+                      checked={selectedCategories.includes(category)}
+                      onCheckedChange={(checked) =>
+                        handleCategoryChange(category, checked as boolean)
+                      }
+                    />
+                    <label htmlFor={category} className="text-sm font-medium">
+                      {category}
+                    </label>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
 
-            {/* Pizza Türleri */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Pizza Türü</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  {categories.map((category) => (
-                    <div key={category} className="flex items-center space-x-2">
-                      <Checkbox
-                        id={category}
-                        checked={selectedCategories.includes(category)}
-                        onCheckedChange={(checked) =>
-                          handleCategoryChange(category, checked as boolean)
-                        }
-                      />
-                      <label htmlFor={category} className="text-sm font-medium">
-                        {category}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+          {/* Boyutlar */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Boyutlar</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                {sizes.map((size) => (
+                  <div key={size} className="flex items-center space-x-2">
+                    <Checkbox
+                      id={size}
+                      checked={selectedSizes.includes(size)}
+                      onCheckedChange={(checked) =>
+                        handleSizeChange(size, checked as boolean)
+                      }
+                    />
+                    <label htmlFor={size} className="text-sm font-medium">
+                      {size}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
 
-            {/* Boyutlar */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Boyutlar</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  {sizes.map((size) => (
-                    <div key={size} className="flex items-center space-x-2">
-                      <Checkbox
-                        id={size}
-                        checked={selectedSizes.includes(size)}
-                        onCheckedChange={(checked) =>
-                          handleSizeChange(size, checked as boolean)
-                        }
-                      />
-                      <label htmlFor={size} className="text-sm font-medium">
-                        {size}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+          {/* Hamur Türü */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Hamur Türü</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                {crusts.map((crust) => (
+                  <div key={crust} className="flex items-center space-x-2">
+                    <Checkbox
+                      id={crust}
+                      checked={selectedCrusts.includes(crust)}
+                      onCheckedChange={(checked) =>
+                        handleCrustChange(crust, checked as boolean)
+                      }
+                    />
+                    <label htmlFor={crust} className="text-sm font-medium">
+                      {crust}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
 
-            {/* Hamur Türü */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Hamur Türü</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  {crusts.map((crust) => (
-                    <div key={crust} className="flex items-center space-x-2">
-                      <Checkbox
-                        id={crust}
-                        checked={selectedCrusts.includes(crust)}
-                        onCheckedChange={(checked) =>
-                          handleCrustChange(crust, checked as boolean)
-                        }
-                      />
-                      <label htmlFor={crust} className="text-sm font-medium">
-                        {crust}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Butonlar (footer is placed outside) */}
-          </div>
-
+          {/* Butonlar (footer is placed outside) */}
         </div>
+      </div>
 
-        <div className="p-6 border-t space-y-3 sticky bottom-0 bg-white">
-          <Button
-            onClick={applyFilters}
-            className="w-full bg-red-600 hover:bg-red-700"
-          >
-            Filtreleri Uygula
-          </Button>
-          <Button
-            onClick={clearFilters}
-            variant="outline"
-            className="w-full"
-          >
-            Filtreleri Temizle
-          </Button>
-        </div>
-
+      <div className="p-6 border-t space-y-3 sticky bottom-0 bg-white">
+        <Button
+          onClick={applyFilters}
+          className="w-full bg-red-600 hover:bg-red-700"
+        >
+          Filtreleri Uygula
+        </Button>
+        <Button onClick={clearFilters} variant="outline" className="w-full">
+          Filtreleri Temizle
+        </Button>
       </div>
     </div>
   );
