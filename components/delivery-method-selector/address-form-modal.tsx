@@ -146,9 +146,9 @@ export function AddressFormModal({
             <div className="flex-shrink-0 w-5 h-5 bg-orange-100 rounded-full flex items-center justify-center mt-0.5">
               <span className="text-orange-600 text-xs font-bold">!</span>
             </div>
-            <p className="text-sm text-orange-800">
-              Şiparisiniz seçtiğiniz adrese teslim edilecektir.
-            </p>
+              <p className="text-sm text-orange-800">
+                Siparişiniz seçtiğiniz adrese teslim edilecektir.
+              </p>
           </div>
 
           <div className="pb-4">

@@ -968,9 +968,9 @@ export default function DeliveryMethodSelector() {
                         !
                       </span>
                     </div>
-                    <p className="text-sm text-orange-800">
-                      Şiparisiniz seçtiğiniz adrese teslim edilecektir.
-                    </p>
+                      <p className="text-sm text-orange-800">
+                        Siparişiniz seçtiğiniz adrese teslim edilecektir.
+                      </p>
                   </div>
 
                   <div className="pb-4">
