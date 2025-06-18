@@ -164,7 +164,10 @@ export default function DeliveryMethodSelector() {
       </div>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-md z-[9999] md:max-w-md lg:max-w-md p-0 gap-0 w-full h-full sm:h-auto sm:w-auto max-h-screen overflow-hidden flex flex-col">
+        <DialogContent
+          size="lg"
+          className="sm:max-w-md z-[9999] md:max-w-md lg:max-w-md p-0 gap-0 w-full h-full sm:h-auto sm:w-auto max-h-screen overflow-hidden flex flex-col"
+        >
           {currentView === "method" && (
             <MethodSelectionModal
               onClose={toggleDialog}
