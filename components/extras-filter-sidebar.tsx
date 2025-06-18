@@ -59,20 +59,19 @@ export function ExtrasFilterSidebar({ isOpen, onClose, onFilterChange }: ExtrasF
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-[9997] md:relative md:bg-transparent" onClick={onClose}>
+    <div className="fixed inset-0 bg-black bg-opacity-50 z-[10000] md:relative md:bg-transparent" onClick={onClose}>
       <div
-        className="fixed right-0 top-0 h-full w-80 bg-white shadow-lg md:relative md:w-full md:shadow-none md:z-0 overflow-y-auto"
+        className="fixed right-0 top-0 h-full w-full bg-white shadow-lg md:relative md:w-80 md:shadow-none md:z-0 flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="p-6 min-h-full">
-          <div className="flex items-center justify-between mb-6 md:hidden">
-            <h2 className="text-xl font-bold">Filtreler</h2>
-            <Button variant="ghost" size="icon" onClick={onClose} className="hover:bg-gray-100">
-              <X className="h-5 w-5" />
-            </Button>
-          </div>
+        <div className="flex items-center justify-between p-6 md:hidden border-b sticky top-0 bg-white z-10">
+          <h2 className="text-xl font-bold">Filtreler</h2>
+          <Button variant="ghost" size="icon" onClick={onClose} className="hover:bg-gray-100">
+            <X className="h-5 w-5" />
+          </Button>
+        </div>
 
-          <div className="space-y-6">
+        <div className="flex-1 overflow-y-auto p-6 space-y-6">
             {/* Fiyat Aralığı */}
             <Card>
               <CardHeader>
@@ -142,17 +141,20 @@ export function ExtrasFilterSidebar({ isOpen, onClose, onFilterChange }: ExtrasF
               </CardContent>
             </Card>
 
-            {/* Butonlar */}
-            <div className="space-y-3">
-              <Button onClick={applyFilters} className="w-full bg-red-600 hover:bg-red-700">
-                Filtreleri Uygula
-              </Button>
-              <Button onClick={clearFilters} variant="outline" className="w-full">
-                Filtreleri Temizle
-              </Button>
-            </div>
+            {/* Butonlar (footer is placed outside) */}
           </div>
+
         </div>
+
+        <div className="p-6 border-t space-y-3 sticky bottom-0 bg-white">
+          <Button onClick={applyFilters} className="w-full bg-red-600 hover:bg-red-700">
+            Filtreleri Uygula
+          </Button>
+          <Button onClick={clearFilters} variant="outline" className="w-full">
+            Filtreleri Temizle
+          </Button>
+        </div>
+
       </div>
     </div>
   )
