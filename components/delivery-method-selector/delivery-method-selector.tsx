@@ -120,110 +120,112 @@ export default function DeliveryMethodSelector() {
   };
 
   return (
-    <div className="p-4">
-      <div className="flex items-center space-x-3">
-        {/* Method Toggle Button */}
-        <button
-          onClick={handleMethodToggle}
-          className="flex items-center space-x-2 px-4 py-2 rounded-full border-2 border-gray-300 hover:border-gray-400 bg-white transition-colors"
-        >
-          {deliveryMethod === "address" ? (
-            <>
-              <Truck className="h-4 w-4 text-red-600" />
-              <span className="text-sm font-medium text-gray-900">
-                Adrese Teslim
-              </span>
-            </>
-          ) : (
-            <>
-              <Store className="h-4 w-4 text-red-600" />
-              <span className="text-sm font-medium text-gray-900">
-                Beklemeden Gel Al
-              </span>
-            </>
-          )}
-        </button>
+    <div className="bg-white shadow-md">
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex items-center space-x-3">
+          {/* Method Toggle Button */}
+          <button
+            onClick={handleMethodToggle}
+            className="flex items-center space-x-2 px-4 py-2 rounded-full border-2 border-gray-300 hover:border-gray-400 bg-white transition-colors"
+          >
+            {deliveryMethod === "address" ? (
+              <>
+                <Truck className="h-4 w-4 text-red-600" />
+                <span className="text-sm font-medium text-gray-900">
+                  Adrese Teslim
+                </span>
+              </>
+            ) : (
+              <>
+                <Store className="h-4 w-4 text-red-600" />
+                <span className="text-sm font-medium text-gray-900">
+                  Beklemeden Gel Al
+                </span>
+              </>
+            )}
+          </button>
 
-        {/* Current Selection */}
-        <button
-          onClick={() => {
-            setCurrentView(deliveryMethod);
-            setIsOpen(true);
-          }}
-          className="flex items-center space-x-2 px-4 py-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors"
-        >
-          <span className="text-sm text-gray-700">
-            {deliveryMethod === "address"
-              ? addresses.find((addr) => addr.isSelected)?.title ||
-                "Adres seçiniz"
-              : selectedBranch?.name.replace("ISTANBUL ", "") + " Şubesi" ||
-                "Şube seçiniz"}
-          </span>
-          <Edit className="h-4 w-4 text-gray-500" />
-        </button>
+          {/* Current Selection */}
+          <button
+            onClick={() => {
+              setCurrentView(deliveryMethod);
+              setIsOpen(true);
+            }}
+            className="flex items-center space-x-2 px-4 py-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors"
+          >
+            <span className="text-sm text-gray-700">
+              {deliveryMethod === "address"
+                ? addresses.find((addr) => addr.isSelected)?.title ||
+                  "Adres seçiniz"
+                : selectedBranch?.name.replace("ISTANBUL ", "") + " Şubesi" ||
+                  "Şube seçiniz"}
+            </span>
+            <Edit className="h-4 w-4 text-gray-500" />
+          </button>
+        </div>
+
+        <Dialog open={isOpen} onOpenChange={setIsOpen}>
+          <DialogContent
+            size="lg"
+            className="sm:max-w-md z-[9999] md:max-w-md lg:max-w-md p-0 gap-0 w-full h-full sm:h-auto sm:w-auto max-h-screen overflow-hidden flex flex-col"
+          >
+            {currentView === "method" && (
+              <MethodSelectionModal
+                onClose={toggleDialog}
+                onSelectMethod={(method) => {
+                  setTempDeliveryMethod(method);
+                  setCurrentView(method);
+                }}
+              />
+            )}
+
+            {currentView === "address" && (
+              <AddressListModal
+                addresses={tempSelectedAddresses}
+                onBack={() => setCurrentView("method")}
+                onAddressSelect={(updatedAddresses) =>
+                  setTempSelectedAddresses(updatedAddresses)
+                }
+                onAddNew={() => setCurrentView("addressForm")}
+                onConfirm={(selectedAddr, newAddresses) =>
+                  handleConfirmSelection(
+                    "address",
+                    selectedAddr,
+                    undefined,
+                    newAddresses
+                  )
+                }
+              />
+            )}
+
+            {currentView === "addressForm" && (
+              <AddressFormModal
+                onBack={() => setCurrentView("address")}
+                onSave={(newAddresses) => {
+                  setTempSelectedAddresses(newAddresses);
+                  setCurrentView("address");
+                }}
+                selectedLocation={selectedLocation}
+                onLocationChange={setSelectedLocation}
+              />
+            )}
+
+            {currentView === "pickup" && (
+              <PickupModal
+                branches={branches}
+                selectedLocation={selectedLocation}
+                onLocationChange={setSelectedLocation}
+                tempSelectedBranch={tempSelectedBranch}
+                onBranchSelect={setTempSelectedBranch}
+                onBack={() => setCurrentView("method")}
+                onConfirm={(selectedBr) =>
+                  handleConfirmSelection("pickup", undefined, selectedBr)
+                }
+              />
+            )}
+          </DialogContent>
+        </Dialog>
       </div>
-
-      <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent
-          size="lg"
-          className="sm:max-w-md z-[9999] md:max-w-md lg:max-w-md p-0 gap-0 w-full h-full sm:h-auto sm:w-auto max-h-screen overflow-hidden flex flex-col"
-        >
-          {currentView === "method" && (
-            <MethodSelectionModal
-              onClose={toggleDialog}
-              onSelectMethod={(method) => {
-                setTempDeliveryMethod(method);
-                setCurrentView(method);
-              }}
-            />
-          )}
-
-          {currentView === "address" && (
-            <AddressListModal
-              addresses={tempSelectedAddresses}
-              onBack={() => setCurrentView("method")}
-              onAddressSelect={(updatedAddresses) =>
-                setTempSelectedAddresses(updatedAddresses)
-              }
-              onAddNew={() => setCurrentView("addressForm")}
-              onConfirm={(selectedAddr, newAddresses) =>
-                handleConfirmSelection(
-                  "address",
-                  selectedAddr,
-                  undefined,
-                  newAddresses
-                )
-              }
-            />
-          )}
-
-          {currentView === "addressForm" && (
-            <AddressFormModal
-              onBack={() => setCurrentView("address")}
-              onSave={(newAddresses) => {
-                setTempSelectedAddresses(newAddresses);
-                setCurrentView("address");
-              }}
-              selectedLocation={selectedLocation}
-              onLocationChange={setSelectedLocation}
-            />
-          )}
-
-          {currentView === "pickup" && (
-            <PickupModal
-              branches={branches}
-              selectedLocation={selectedLocation}
-              onLocationChange={setSelectedLocation}
-              tempSelectedBranch={tempSelectedBranch}
-              onBranchSelect={setTempSelectedBranch}
-              onBack={() => setCurrentView("method")}
-              onConfirm={(selectedBr) =>
-                handleConfirmSelection("pickup", undefined, selectedBr)
-              }
-            />
-          )}
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }

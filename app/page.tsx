@@ -12,11 +12,9 @@ export default function HomePage() {
     <div className="min-h-screen bg-gray-50">
       <Header />
       <main>
-        <div className="bg-white shadow-sm">
-          <div className="container mx-auto px-4 py-4">
-            <DeliveryMethodSelector />
-            <SearchBar />
-          </div>
+        <DeliveryMethodSelector />
+        <div className="container mx-auto px-4 py-4">
+          <SearchBar />
         </div>
         <HeroSlider />
         <PizzaCarousel />
